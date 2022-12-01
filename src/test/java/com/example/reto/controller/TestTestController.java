@@ -16,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.springframework.http.HttpStatus;
 
-import com.example.reto.controller.TestController;
 import com.example.reto.models.TestModel;
 import com.example.reto.service.TestService;
 
@@ -34,7 +33,7 @@ class TestTestController {
      private TestController  testController;
      
 	@Test
-	public void obtenerTestNotContent() {
+	public void obtenerTestNoContent() {
 		ArrayList<TestModel> noContent = new ArrayList<TestModel>();
 		Mockito.when(testServicioMock.obtenerTest())
 		        .thenReturn(noContent);
@@ -97,7 +96,6 @@ class TestTestController {
 	}
 	@Test
 	public void actualizarTestYRetorneNotFound() {
-		TestModel noContent = new TestModel();
 		Mockito.when(testServicioMock.actualizarTest(null))
 		        .thenReturn(null);
 		var status = testController.update(null); 
@@ -114,9 +112,7 @@ class TestTestController {
 	}
 	@Test
 	public void eliminarTestNotContent() {
-		TestModel contentOk = new TestModel();
-		
-	    doThrow(NullPointerException.class).when(testServicioMock).eliminarTest(null);
+		doThrow(NullPointerException.class).when(testServicioMock).eliminarTest(null);
 	 
 		var status = testController.eliminarPorId(null); 
 		assertEquals(HttpStatus.NO_CONTENT,status.getStatusCode());
