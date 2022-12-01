@@ -25,56 +25,58 @@ import com.example.reto.service.TestService;
 public class TestController {
 	@Autowired
 	TestService testService;
-	
+
 	@GetMapping()
-	public ResponseEntity<ArrayList<TestModel>> obtenerTest(){
+	public ResponseEntity<ArrayList<TestModel>> obtenerTest() {
 		ArrayList<TestModel> obtener = this.testService.obtenerTest();
-		if(obtener.isEmpty()) {
+		if (obtener.isEmpty()) {
 			return ResponseEntity.noContent().build();
-		}else {
+		} else {
 			return ResponseEntity.ok(obtener);
 		}
 	}
+
 	@PostMapping()
 	public ResponseEntity<TestModel> guardarTest(@RequestBody TestModel test) {
-		
+
 		try {
 			TestModel guardar = this.testService.guardarTest(test);
 			return ResponseEntity.status(HttpStatus.CREATED).body(guardar);
-		}catch(Exception Error) {
+		} catch (Exception Error) {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	@GetMapping(path ="/{id}")
-	public ResponseEntity<Optional<TestModel>> obtenerTestPorId(@PathVariable("id")Long id){
+
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<Optional<TestModel>> obtenerTestPorId(@PathVariable("id") Long id) {
 		Optional<TestModel> obtenerConId = this.testService.obtenerPorId(id);
-		if(obtenerConId.isPresent()) {
-		return ResponseEntity.ok(obtenerConId);
-	}else {
-		return ResponseEntity.notFound().build();
+		if (obtenerConId.isPresent()) {
+			return ResponseEntity.ok(obtenerConId);
+		} else {
+			return ResponseEntity.notFound().build();
 		}
 	}
-	
-    @PutMapping()
-    public ResponseEntity<TestModel> update(@RequestBody TestModel test) {
-    	TestModel obtenerId =this.testService.actualizarTest(test);
-    	if(obtenerId != null) {
-    		return ResponseEntity.status(HttpStatus.CREATED).body(obtenerId);
-    	}else {
-    	
-    	return ResponseEntity.notFound().build();
-    	}
-    }
-    @DeleteMapping(path ="/{id}")
-    public ResponseEntity<Void> eliminarPorId(@PathVariable("id") Long id) {
-    	try {
-    		testService.eliminarTest(id);
-    		return ResponseEntity.ok().build();
-    	}catch(Exception Error) {
-    		return ResponseEntity.noContent().build();
-    	}
-    	
-    }
-    	
-    
+
+	@PutMapping()
+	public ResponseEntity<TestModel> update(@RequestBody TestModel test) {
+		TestModel obtenerId = this.testService.actualizarTest(test);
+		if (obtenerId != null) {
+			return ResponseEntity.status(HttpStatus.CREATED).body(obtenerId);
+		} else {
+
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<Void> eliminarPorId(@PathVariable("id") Long id) {
+		try {
+			testService.eliminarTest(id);
+			return ResponseEntity.ok().build();
+		} catch (Exception Error) {
+			return ResponseEntity.noContent().build();
+		}
+
+	}
+
 }

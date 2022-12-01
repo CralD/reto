@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.reto.models.TestModel;
 
 @Repository
-public interface TestRepository extends JpaRepository<TestModel, Long>{
+public interface TestRepository extends JpaRepository<TestModel, Long> {
 
 }
