@@ -6,29 +6,29 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.reto.models.Test;
+import com.example.reto.models.TestModel;
 import com.example.reto.repository.TestRepository;
 
 @Service
 public class TestService {
     @Autowired
 	TestRepository testRepository;
-    public ArrayList<Test> obtenerTest(){
-    	return (ArrayList<Test>) testRepository.findAll();
+    public ArrayList<TestModel> obtenerTest(){
+    	return (ArrayList<TestModel>) testRepository.findAll();
     }
     
-    public Test guardarTest(Test test) {
+    public TestModel guardarTest(TestModel test) {
     	return testRepository.save(test);
     }
     
-    public Optional<Test> obtenerPorId(Long id){
+    public Optional<TestModel> obtenerPorId(Long id){
         return testRepository.findById(id);
     }
     
-    public Test  actualizarTest(Test test){
-    	Optional<Test> testId = testRepository.findById(test.getId());
+    public TestModel  actualizarTest(TestModel test){
+    	Optional<TestModel> testId = testRepository.findById(test.getId());
     	if(testId.isPresent()) {
-    		Test testActualizado = testId.get();
+    		TestModel testActualizado = testId.get();
     		testActualizado.setName(test.getName());
         	testActualizado.setDescription(test.getDescription());
         	
