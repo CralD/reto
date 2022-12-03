@@ -14,10 +14,10 @@ public class AffiliatesService {
 	@Autowired
 	AffiliatesRepository affiliatesRepository;
 
-	public ArrayList<AffiliatesModel> obtenerAfiliados() {
+	
+	public ArrayList<AffiliatesModel> obtenerAfiliados(){
 		return (ArrayList<AffiliatesModel>) affiliatesRepository.findAll();
 	}
-
 	public AffiliatesModel guardarAfiliados(AffiliatesModel affiliates) {
 		return affiliatesRepository.save(affiliates);
 	}
