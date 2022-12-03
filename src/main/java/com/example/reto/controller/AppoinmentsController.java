@@ -1,9 +1,12 @@
 package com.example.reto.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -73,6 +76,24 @@ public class AppoinmentsController {
 			return ResponseEntity.ok().build();
 		} catch (Exception Error) {
 			return ResponseEntity.noContent().build();
+		}
+	}
+	@GetMapping(path ="/GetByAfilliate/{id}")
+	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorAfiliado(@PathVariable("id") Long id){
+		List<AppoinmentsModel> obtener = this.appoinmentsService.obtenerPorAfiliado(id);
+		if (obtener.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.ok(obtener);
+		}
+	}
+	@GetMapping(path ="/GetByDate/{date}")
+	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorDate (@PathVariable("date")@DateTimeFormat(pattern="yyyy-MM-dd")LocalDate date){
+		List<AppoinmentsModel> obtener = this.appoinmentsService.obtenerPorDate(date);
+		if (obtener.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		} else {
+			return ResponseEntity.ok(obtener);
 		}
 	}
 }

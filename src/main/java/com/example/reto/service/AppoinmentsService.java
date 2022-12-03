@@ -1,6 +1,8 @@
 package com.example.reto.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +85,14 @@ public class AppoinmentsService {
 	public void eliminarAppoinment(Long id) {
 		appoinmentsRepository.deleteById(id);
 	}
-
+	
+	public List<AppoinmentsModel> obtenerPorAfiliado(Long id) {
+		AffiliatesModel affiliado = new AffiliatesModel();
+		affiliado.setId(id);
+		return  appoinmentsRepository.findByAffiliate(affiliado);
+	}
+	public List<AppoinmentsModel> obtenerPorDate(LocalDate date){
+		
+		return appoinmentsRepository.findByDateOrderByAffiliate(date);
+	}
 }

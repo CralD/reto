@@ -1,13 +1,16 @@
 package com.example.reto.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.reto.models.AffiliatesModel;
+import com.example.reto.models.AppoinmentsModel;
 import com.example.reto.repository.AffiliatesRepository;
+import com.example.reto.repository.AppoinmentsRepository;
 
 @Service
 public class AffiliatesService {
@@ -42,4 +45,5 @@ public class AffiliatesService {
 	public void deleteAffiliates(Long id) {
 		affiliatesRepository.deleteById(id);
 	}
+
 }
