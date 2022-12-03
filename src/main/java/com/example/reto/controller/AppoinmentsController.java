@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.reto.models.AffiliatesModel;
-import com.example.reto.service.AffiliatesService;
+import com.example.reto.dto.AppoinmentsDTO;
+import com.example.reto.models.AppoinmentsModel;
+import com.example.reto.service.AppoinmentsService;
 
 @RestController
-@RequestMapping("/affiliates")
-public class AffiliatesController {
+@RequestMapping("/appoinments")
+public class AppoinmentsController {
 	@Autowired
-	AffiliatesService affiliatesService;
+	AppoinmentsService appoinmentsService;
 
 	@GetMapping()
-	public ResponseEntity<ArrayList<AffiliatesModel>> obtenerAfiliados() {
-		ArrayList<AffiliatesModel> obtener = this.affiliatesService.obtenerAfiliados();
+	public ResponseEntity<ArrayList<AppoinmentsModel>> obtenerAppoinment() {
+		ArrayList<AppoinmentsModel> obtener = this.appoinmentsService.obtenerAppoinment();
 		if (obtener.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		} else {
@@ -35,10 +36,10 @@ public class AffiliatesController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<AffiliatesModel> guardarAfiliados(@RequestBody AffiliatesModel affiliates) {
+	public ResponseEntity<AppoinmentsModel> guardarAppoinment(@RequestBody AppoinmentsDTO appoinment) {
 
 		try {
-			AffiliatesModel guardar = this.affiliatesService.guardarAfiliados(affiliates);
+			AppoinmentsModel guardar = this.appoinmentsService.guardarAppoinment(appoinment);
 			return ResponseEntity.status(HttpStatus.CREATED).body(guardar);
 		} catch (Exception Error) {
 			return ResponseEntity.notFound().build();
@@ -46,8 +47,8 @@ public class AffiliatesController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Optional<AffiliatesModel>> obtenerAfiliadosPorId(@PathVariable("id") Long id) {
-		Optional<AffiliatesModel> obtenerConId = this.affiliatesService.obtenerAfiliadosPorId(id);
+	public ResponseEntity<Optional<AppoinmentsModel>> obtenerAppoinmentPorId(@PathVariable("id") Long id) {
+		Optional<AppoinmentsModel> obtenerConId = this.appoinmentsService.obtenerAppoinmentPorID(id);
 		if (obtenerConId.isPresent()) {
 			return ResponseEntity.ok(obtenerConId);
 		} else {
@@ -56,8 +57,8 @@ public class AffiliatesController {
 	}
 
 	@PutMapping()
-	public ResponseEntity<AffiliatesModel> update(@RequestBody AffiliatesModel affiliates) {
-		AffiliatesModel obtenerId = this.affiliatesService.actualizarAfiliados(affiliates);
+	public ResponseEntity<AppoinmentsModel> actualizarAppoinment(@RequestBody AppoinmentsDTO appoinment) {
+		AppoinmentsModel obtenerId = this.appoinmentsService.actualizarAppoinment(appoinment);
 		if (obtenerId != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(obtenerId);
 		} else {
@@ -66,9 +67,9 @@ public class AffiliatesController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Void> eliminarAfiliadoPorId(@PathVariable("id") Long id) {
+	public ResponseEntity<Void> eliminarAppoinmentPorId(@PathVariable("id") Long id) {
 		try {
-			affiliatesService.deleteAffiliates(id);
+			appoinmentsService.eliminarAppoinment(id);
 			return ResponseEntity.ok().build();
 		} catch (Exception Error) {
 			return ResponseEntity.noContent().build();
