@@ -82,7 +82,7 @@ public class AppoinmentsController {
 	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorAfiliado(@PathVariable("id") Long id){
 		List<AppoinmentsModel> obtener = this.appoinmentsService.obtenerPorAfiliado(id);
 		if (obtener.isEmpty()) {
-			return ResponseEntity.noContent().build();
+			return ResponseEntity.notFound().build();
 		} else {
 			return ResponseEntity.ok(obtener);
 		}
@@ -91,7 +91,7 @@ public class AppoinmentsController {
 	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorDate (@PathVariable("date")@DateTimeFormat(pattern="yyyy-MM-dd")LocalDate date){
 		List<AppoinmentsModel> obtener = this.appoinmentsService.obtenerPorDate(date);
 		if (obtener.isEmpty()) {
-			return ResponseEntity.noContent().build();
+			return ResponseEntity.notFound().build();
 		} else {
 			return ResponseEntity.ok(obtener);
 		}

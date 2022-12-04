@@ -53,12 +53,11 @@ public class AppoinmentsService {
 	}
 
 	public AppoinmentsModel actualizarAppoinment(AppoinmentsDTO appoinmentDto) {
-	
-		
+
 		Optional<AppoinmentsModel> appoinment = appoinmentsRepository.findById(appoinmentDto.getId());
-		
+
 		if (appoinment.isPresent()) {
-			
+
 			Optional<AffiliatesModel> affiliate = affiliatesRepository.findById(appoinmentDto.getIdAffiliate());
 			if (affiliate.isEmpty()) {
 				return null;
@@ -68,16 +67,16 @@ public class AppoinmentsService {
 			if (test.isEmpty()) {
 				return null;
 			}
-			
+
 			AppoinmentsModel appoinmentActualizado = appoinment.get();
 			appoinmentActualizado.setDate(appoinmentDto.getDate());
 			appoinmentActualizado.setHour(appoinmentDto.getHour());
 			appoinmentActualizado.setTest(test.get());
 			appoinmentActualizado.setAffiliate(affiliate.get());
 			return appoinmentsRepository.save(appoinmentActualizado);
-			
+
 		} else {
-			
+
 			return null;
 		}
 	}
@@ -85,14 +84,15 @@ public class AppoinmentsService {
 	public void eliminarAppoinment(Long id) {
 		appoinmentsRepository.deleteById(id);
 	}
-	
+
 	public List<AppoinmentsModel> obtenerPorAfiliado(Long id) {
 		AffiliatesModel affiliado = new AffiliatesModel();
 		affiliado.setId(id);
-		return  appoinmentsRepository.findByAffiliate(affiliado);
+		return appoinmentsRepository.findByAffiliate(affiliado);
 	}
-	public List<AppoinmentsModel> obtenerPorDate(LocalDate date){
-		
+
+	public List<AppoinmentsModel> obtenerPorDate(LocalDate date) {
+
 		return appoinmentsRepository.findByDateOrderByAffiliate(date);
 	}
 }

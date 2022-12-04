@@ -45,7 +45,7 @@ class AffiliatesControllerTest {
 		assertEquals(HttpStatus.OK, status.getStatusCode());
 	}
 	@Test
-	public void gaurdarAfiliadosyRetorneOk() {
+	public void guardarAfiliadosyRetorneOk() {
 		AffiliatesModel contentOK = new AffiliatesModel();
 		contentOK.setId((long)1);
 		contentOK.setName("juan rodriguez");
@@ -57,15 +57,18 @@ class AffiliatesControllerTest {
 		assertEquals(HttpStatus.CREATED,status.getStatusCode());
 	}
 	@Test
-	public void gaurdarAfiliadosyRetorneNotFound() {
+	public void guardarAfiliadosyRetorneNotFound() {
 		AffiliatesModel contentOK = new AffiliatesModel();
 		contentOK.setId((long)1);
 		contentOK.setName("juan rodriguez");
 		contentOK.setAge(34);
 		contentOK.setMail("juanro@gamil.com");
+		
 		Mockito.when(affiliatesServiceMock.guardarAfiliados(contentOK))
 		        .thenThrow(NullPointerException.class);
+		
 		ResponseEntity<AffiliatesModel> status = affiliatesController.guardarAfiliados(contentOK);
+		
 		assertEquals(HttpStatus.NOT_FOUND,status.getStatusCode());
 	}
 	@Test
