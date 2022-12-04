@@ -11,14 +11,17 @@ import com.example.reto.repository.TestRepository;
 
 @Service
 public class TestService {
+
 	@Autowired
 	TestRepository testRepository;
 
 	public ArrayList<TestModel> obtenerTest() {
+
 		return (ArrayList<TestModel>) testRepository.findAll();
 	}
 
 	public TestModel guardarTest(TestModel test) {
+
 		return testRepository.save(test);
 	}
 
@@ -27,7 +30,9 @@ public class TestService {
 	}
 
 	public TestModel actualizarTest(TestModel test) {
+
 		Optional<TestModel> testId = testRepository.findById(test.getId());
+
 		if (testId.isPresent()) {
 			TestModel testActualizado = testId.get();
 			testActualizado.setName(test.getName());
@@ -37,11 +42,13 @@ public class TestService {
 		}
 
 		else {
+
 			return null;
 		}
 	}
 
 	public void eliminarTest(Long id) {
+
 		testRepository.deleteById(id);
 	}
 }

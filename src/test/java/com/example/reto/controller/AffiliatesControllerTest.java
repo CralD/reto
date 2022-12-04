@@ -31,93 +31,119 @@ class AffiliatesControllerTest {
 	@Test
 	public void obtenerAfiliadosyRetorneNoContent() {
 		ArrayList<AffiliatesModel> noContent = new ArrayList<AffiliatesModel>();
+
 		Mockito.when(affiliatesServiceMock.obtenerAfiliados()).thenReturn(noContent);
+
 		ResponseEntity<ArrayList<AffiliatesModel>> status = affiliatesController.obtenerAfiliados();
+
 		assertEquals(HttpStatus.NO_CONTENT, status.getStatusCode());
 	}
 
 	@Test
 	public void obtenerAfiliadosYRetoneOk() {
 		ArrayList<AffiliatesModel> contentOk = new ArrayList<AffiliatesModel>();
+
 		contentOk.add(new AffiliatesModel());
+
 		Mockito.when(affiliatesServiceMock.obtenerAfiliados()).thenReturn(contentOk);
+
 		ResponseEntity<ArrayList<AffiliatesModel>> status = affiliatesController.obtenerAfiliados();
+
 		assertEquals(HttpStatus.OK, status.getStatusCode());
 	}
+
 	@Test
 	public void guardarAfiliadosyRetorneOk() {
 		AffiliatesModel contentOK = new AffiliatesModel();
-		contentOK.setId((long)1);
+
+		contentOK.setId((long) 1);
 		contentOK.setName("juan rodriguez");
 		contentOK.setAge(34);
 		contentOK.setMail("juanro@gamil.com");
-		Mockito.when(affiliatesServiceMock.guardarAfiliados(contentOK))
-		        .thenReturn(contentOK);
+
+		Mockito.when(affiliatesServiceMock.guardarAfiliados(contentOK)).thenReturn(contentOK);
+
 		ResponseEntity<AffiliatesModel> status = affiliatesController.guardarAfiliados(contentOK);
-		assertEquals(HttpStatus.CREATED,status.getStatusCode());
+
+		assertEquals(HttpStatus.CREATED, status.getStatusCode());
 	}
+
 	@Test
 	public void guardarAfiliadosyRetorneNotFound() {
-		AffiliatesModel contentOK = new AffiliatesModel();
-		contentOK.setId((long)1);
-		contentOK.setName("juan rodriguez");
-		contentOK.setAge(34);
-		contentOK.setMail("juanro@gamil.com");
-		
-		Mockito.when(affiliatesServiceMock.guardarAfiliados(contentOK))
-		        .thenThrow(NullPointerException.class);
-		
-		ResponseEntity<AffiliatesModel> status = affiliatesController.guardarAfiliados(contentOK);
-		
-		assertEquals(HttpStatus.NOT_FOUND,status.getStatusCode());
+		AffiliatesModel noContent = new AffiliatesModel();
+
+		noContent.setId((long) 1);
+		noContent.setName("juan rodriguez");
+		noContent.setAge(34);
+		noContent.setMail("juanro@gamil.com");
+
+		Mockito.when(affiliatesServiceMock.guardarAfiliados(noContent)).thenThrow(NullPointerException.class);
+
+		ResponseEntity<AffiliatesModel> status = affiliatesController.guardarAfiliados(noContent);
+
+		assertEquals(HttpStatus.NOT_FOUND, status.getStatusCode());
 	}
+
 	@Test
 	public void obtenerAfiliadosPorIdyRetorneOk() {
-		Optional<AffiliatesModel> contentOk =Optional.of(new AffiliatesModel());
-		Mockito.when(affiliatesServiceMock.obtenerAfiliadosPorId((long)1))
-				.thenReturn(contentOk);
-		ResponseEntity<Optional<AffiliatesModel>> status = affiliatesController.obtenerAfiliadosPorId((long)1);
-		assertEquals(HttpStatus.OK,status.getStatusCode());
+		Optional<AffiliatesModel> contentOk = Optional.of(new AffiliatesModel());
+
+		Mockito.when(affiliatesServiceMock.obtenerAfiliadosPorId((long) 1)).thenReturn(contentOk);
+
+		ResponseEntity<Optional<AffiliatesModel>> status = affiliatesController.obtenerAfiliadosPorId((long) 1);
+
+		assertEquals(HttpStatus.OK, status.getStatusCode());
 	}
+
 	@Test
 	public void obtenerAfiliadosPorIdyRetorneNotFound() {
-		Mockito.when(affiliatesServiceMock.obtenerAfiliadosPorId((long)1))
-				.thenReturn(Optional.empty());
-		ResponseEntity<Optional<AffiliatesModel>> status = affiliatesController.obtenerAfiliadosPorId((long)1);
-		assertEquals(HttpStatus.NOT_FOUND,status.getStatusCode());
+		Mockito.when(affiliatesServiceMock.obtenerAfiliadosPorId((long) 1)).thenReturn(Optional.empty());
+
+		ResponseEntity<Optional<AffiliatesModel>> status = affiliatesController.obtenerAfiliadosPorId((long) 1);
+
+		assertEquals(HttpStatus.NOT_FOUND, status.getStatusCode());
 	}
+
 	@Test
 	public void actualizarAfiliadosyRetorneOk() {
 		AffiliatesModel contentOK = new AffiliatesModel();
-		Mockito.when(affiliatesServiceMock.actualizarAfiliados(contentOK))
-		        .thenReturn(contentOK);
-		ResponseEntity<AffiliatesModel> status = affiliatesController.update(contentOK);
-		assertEquals(HttpStatus.CREATED,status.getStatusCode());
+
+		Mockito.when(affiliatesServiceMock.actualizarAfiliados(contentOK)).thenReturn(contentOK);
+
+		ResponseEntity<AffiliatesModel> status = affiliatesController.actualizarAfiliado(contentOK);
+
+		assertEquals(HttpStatus.CREATED, status.getStatusCode());
 	}
+
 	@Test
 	public void actualizarAfiliadosyRetorneNotFound() {
-		Mockito.when(affiliatesServiceMock.actualizarAfiliados(null))
-		        .thenReturn(null);
-		ResponseEntity<AffiliatesModel> status = affiliatesController.update(null);
-		assertEquals(HttpStatus.NOT_FOUND,status.getStatusCode());
+		Mockito.when(affiliatesServiceMock.actualizarAfiliados(null)).thenReturn(null);
+
+		ResponseEntity<AffiliatesModel> status = affiliatesController.actualizarAfiliado(null);
+
+		assertEquals(HttpStatus.NOT_FOUND, status.getStatusCode());
 	}
+
 	@Test
 	public void eliminarAfiliadosPorIdyRetorneOK() {
 		AffiliatesModel contentOk = new AffiliatesModel();
-		contentOk.setId((long)1);
-		doNothing().when(affiliatesServiceMock).deleteAffiliates((long)1);
-		ResponseEntity<Void> status = affiliatesController.eliminarAfiliadoPorId((long)1);
-		assertEquals(HttpStatus.OK,status.getStatusCode());
+		contentOk.setId((long) 1);
+
+		doNothing().when(affiliatesServiceMock).eliminarAfiliado((long) 1);
+
+		ResponseEntity<Void> status = affiliatesController.eliminarAfiliadoPorId((long) 1);
+
+		assertEquals(HttpStatus.OK, status.getStatusCode());
 	}
+
 	@Test
 	public void eliminarAfiliadosPorIdyRetorneNoContent() {
-		
-	doThrow(NullPointerException.class).when(affiliatesServiceMock).deleteAffiliates(null);
-		
-		ResponseEntity<Void> status = affiliatesController.eliminarAfiliadoPorId((long)1);
-		assertEquals(HttpStatus.NO_CONTENT,status.getStatusCode());
-	}
-	
 
+		doThrow(NullPointerException.class).when(affiliatesServiceMock).eliminarAfiliado(null);
+
+		ResponseEntity<Void> status = affiliatesController.eliminarAfiliadoPorId((long) 1);
+
+		assertEquals(HttpStatus.NO_CONTENT, status.getStatusCode());
+	}
 
 }

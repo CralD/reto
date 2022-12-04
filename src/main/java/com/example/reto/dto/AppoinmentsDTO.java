@@ -7,10 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AppoinmentsDTO {
 	private Long id;
-	
+
 	@JsonFormat(pattern = "HH:mm")
 	private LocalTime hour;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate date;
 	private Long idTest;

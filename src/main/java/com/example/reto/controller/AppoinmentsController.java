@@ -31,6 +31,7 @@ public class AppoinmentsController {
 	@GetMapping()
 	public ResponseEntity<ArrayList<AppoinmentsModel>> obtenerAppoinment() {
 		ArrayList<AppoinmentsModel> obtener = this.appoinmentsService.obtenerAppoinment();
+
 		if (obtener.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		} else {
@@ -43,7 +44,9 @@ public class AppoinmentsController {
 
 		try {
 			AppoinmentsModel guardar = this.appoinmentsService.guardarAppoinment(appoinment);
+
 			return ResponseEntity.status(HttpStatus.CREATED).body(guardar);
+
 		} catch (Exception Error) {
 			return ResponseEntity.notFound().build();
 		}
@@ -52,6 +55,7 @@ public class AppoinmentsController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Optional<AppoinmentsModel>> obtenerAppoinmentPorId(@PathVariable("id") Long id) {
 		Optional<AppoinmentsModel> obtenerConId = this.appoinmentsService.obtenerAppoinmentPorID(id);
+
 		if (obtenerConId.isPresent()) {
 			return ResponseEntity.ok(obtenerConId);
 		} else {
@@ -62,6 +66,7 @@ public class AppoinmentsController {
 	@PutMapping()
 	public ResponseEntity<AppoinmentsModel> actualizarAppoinment(@RequestBody AppoinmentsDTO appoinment) {
 		AppoinmentsModel obtenerId = this.appoinmentsService.actualizarAppoinment(appoinment);
+
 		if (obtenerId != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(obtenerId);
 		} else {
@@ -71,25 +76,32 @@ public class AppoinmentsController {
 
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Void> eliminarAppoinmentPorId(@PathVariable("id") Long id) {
+
 		try {
 			appoinmentsService.eliminarAppoinment(id);
+
 			return ResponseEntity.ok().build();
 		} catch (Exception Error) {
 			return ResponseEntity.noContent().build();
 		}
 	}
-	@GetMapping(path ="/GetByAfilliate/{id}")
-	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorAfiliado(@PathVariable("id") Long id){
+
+	@GetMapping(path = "/GetByAfilliate/{id}")
+	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorAfiliado(@PathVariable("id") Long id) {
 		List<AppoinmentsModel> obtener = this.appoinmentsService.obtenerPorAfiliado(id);
+
 		if (obtener.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		} else {
 			return ResponseEntity.ok(obtener);
 		}
 	}
-	@GetMapping(path ="/GetByDate/{date}")
-	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorDate (@PathVariable("date")@DateTimeFormat(pattern="yyyy-MM-dd")LocalDate date){
+
+	@GetMapping(path = "/GetByDate/{date}")
+	public ResponseEntity<List<AppoinmentsModel>> obtenerAppoinmentPorDate(
+			@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
 		List<AppoinmentsModel> obtener = this.appoinmentsService.obtenerPorDate(date);
+
 		if (obtener.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		} else {

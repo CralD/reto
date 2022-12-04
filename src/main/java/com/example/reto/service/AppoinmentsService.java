@@ -31,7 +31,9 @@ public class AppoinmentsService {
 
 	public AppoinmentsModel guardarAppoinment(AppoinmentsDTO appoinmentDto) {
 		Optional<AffiliatesModel> affiliate = affiliatesRepository.findById(appoinmentDto.getIdAffiliate());
+
 		if (affiliate.isEmpty()) {
+
 			return null;
 		}
 
@@ -39,11 +41,13 @@ public class AppoinmentsService {
 		if (test.isEmpty()) {
 			return null;
 		}
+
 		AppoinmentsModel appoinment = new AppoinmentsModel();
 		appoinment.setDate(appoinmentDto.getDate());
 		appoinment.setHour(appoinmentDto.getHour());
 		appoinment.setTest(test.get());
 		appoinment.setAffiliate(affiliate.get());
+
 		return appoinmentsRepository.save(appoinment);
 
 	}
@@ -86,8 +90,10 @@ public class AppoinmentsService {
 	}
 
 	public List<AppoinmentsModel> obtenerPorAfiliado(Long id) {
+
 		AffiliatesModel affiliado = new AffiliatesModel();
 		affiliado.setId(id);
+
 		return appoinmentsRepository.findByAffiliate(affiliado);
 	}
 

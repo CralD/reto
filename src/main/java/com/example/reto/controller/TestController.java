@@ -29,6 +29,7 @@ public class TestController {
 	@GetMapping()
 	public ResponseEntity<ArrayList<TestModel>> obtenerTest() {
 		ArrayList<TestModel> obtener = this.testService.obtenerTest();
+
 		if (obtener.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		} else {
@@ -50,6 +51,7 @@ public class TestController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Optional<TestModel>> obtenerTestPorId(@PathVariable("id") Long id) {
 		Optional<TestModel> obtenerConId = this.testService.obtenerPorId(id);
+
 		if (obtenerConId.isPresent()) {
 			return ResponseEntity.ok(obtenerConId);
 		} else {
@@ -58,8 +60,9 @@ public class TestController {
 	}
 
 	@PutMapping()
-	public ResponseEntity<TestModel> update(@RequestBody TestModel test) {
+	public ResponseEntity<TestModel> actualizarTest(@RequestBody TestModel test) {
 		TestModel obtenerId = this.testService.actualizarTest(test);
+
 		if (obtenerId != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(obtenerId);
 		} else {

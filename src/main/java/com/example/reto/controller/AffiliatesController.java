@@ -27,6 +27,7 @@ public class AffiliatesController {
 	@GetMapping()
 	public ResponseEntity<ArrayList<AffiliatesModel>> obtenerAfiliados() {
 		ArrayList<AffiliatesModel> obtener = this.affiliatesService.obtenerAfiliados();
+
 		if (obtener.isEmpty()) {
 			return ResponseEntity.noContent().build();
 		} else {
@@ -39,6 +40,7 @@ public class AffiliatesController {
 
 		try {
 			AffiliatesModel guardar = this.affiliatesService.guardarAfiliados(affiliates);
+
 			return ResponseEntity.status(HttpStatus.CREATED).body(guardar);
 		} catch (Exception Error) {
 			return ResponseEntity.notFound().build();
@@ -48,6 +50,7 @@ public class AffiliatesController {
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<Optional<AffiliatesModel>> obtenerAfiliadosPorId(@PathVariable("id") Long id) {
 		Optional<AffiliatesModel> obtenerConId = this.affiliatesService.obtenerAfiliadosPorId(id);
+
 		if (obtenerConId.isPresent()) {
 			return ResponseEntity.ok(obtenerConId);
 		} else {
@@ -56,8 +59,9 @@ public class AffiliatesController {
 	}
 
 	@PutMapping()
-	public ResponseEntity<AffiliatesModel> update(@RequestBody AffiliatesModel affiliates) {
+	public ResponseEntity<AffiliatesModel> actualizarAfiliado(@RequestBody AffiliatesModel affiliates) {
 		AffiliatesModel obtenerId = this.affiliatesService.actualizarAfiliados(affiliates);
+
 		if (obtenerId != null) {
 			return ResponseEntity.status(HttpStatus.CREATED).body(obtenerId);
 		} else {
@@ -68,7 +72,9 @@ public class AffiliatesController {
 	@DeleteMapping(path = "/{id}")
 	public ResponseEntity<Void> eliminarAfiliadoPorId(@PathVariable("id") Long id) {
 		try {
-			affiliatesService.deleteAffiliates(id);
+
+			affiliatesService.eliminarAfiliado(id);
+
 			return ResponseEntity.ok().build();
 		} catch (Exception Error) {
 			return ResponseEntity.noContent().build();
