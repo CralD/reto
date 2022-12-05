@@ -5,6 +5,8 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -64,8 +66,8 @@ class AppoinmentsControllerTest {
 		AppoinmentsModel contentOk1 = new AppoinmentsModel();
 
 		contentOk1.setId((long) 1);
-		contentOk1.setDate(null);
-		contentOk1.setHour(null);
+		contentOk1.setDate(LocalDate.of(2022, 12, 21));
+		contentOk1.setHour(LocalTime.of(7, 30));
 		contentOk.setIdTest((long) 1);
 		contentOk.setIdAffiliate((long) 1);
 
@@ -84,8 +86,8 @@ class AppoinmentsControllerTest {
 		AppoinmentsModel contentOk1 = new AppoinmentsModel();
 
 		contentOk1.setId((long) 1);
-		contentOk1.setDate(null);
-		contentOk1.setHour(null);
+		contentOk1.setDate(LocalDate.of(2022, 12, 21));
+		contentOk1.setHour(LocalTime.of(7, 30));
 		contentOk.setIdTest((long) 1);
 		contentOk.setIdAffiliate((long) 1);
 
