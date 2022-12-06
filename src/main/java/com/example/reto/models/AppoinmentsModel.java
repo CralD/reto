@@ -33,11 +33,11 @@ public class AppoinmentsModel {
 	@Column(name = "hour_a")
 	private LocalTime hour;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_test")
 	private TestModel test;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_affiliate")
 	private AffiliatesModel affiliate;
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "eccbc46d-f7e7-450d-aa45-ab72e4f00bc2",
+		"_postman_id": "287a48f2-1888-4038-8c37-a2e600e1e73f",
 		"name": "TestApi",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "24611432"
@@ -22,6 +22,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"test"
 							]
 						}
@@ -35,7 +37,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n    \"name\": \"nicolas peña\",\r\n   \"description\": \"prueba 2 \"\r\n\r\n}",
+							"raw": "{\r\n    \r\n    \"name\": \"Sara Osorio\",\r\n   \"description\": \"prueba 2 \"\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -50,6 +52,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"test"
 							]
 						}
@@ -57,7 +61,7 @@
 					"response": []
 				},
 				{
-					"name": "getbyid",
+					"name": "Getbyid",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -69,6 +73,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"test",
 								"3"
 							]
@@ -77,13 +83,13 @@
 					"response": []
 				},
 				{
-					"name": "put",
+					"name": "Put",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n       \"id\": 1,\r\n        \"name\": \"esteban gonzales\",\r\n        \"description\": \"test 1\"\r\n    }",
+							"raw": " {\r\n        \"id\": 5,\r\n        \"name\": \"Nicolas Perez\",\r\n        \"description\": \"prueba 3 \"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -98,6 +104,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"test"
 							]
 						}
@@ -105,7 +113,7 @@
 					"response": []
 				},
 				{
-					"name": "deletebyid",
+					"name": "Deletebyid",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -119,15 +127,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/controller/test/1",
+							"raw": "http://localhost:8080/api/controller/test/22",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"test",
-								"1"
+								"22"
 							]
 						}
 					},
@@ -166,7 +176,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" :\"esteban gonzales\",\r\n    \"age\" : 20,\r\n    \"mail\" :\"esteban@mail\"\r\n}",
+							"raw": "{\r\n    \"name\" :\"Sara Osorio\",\r\n    \"age\" : 38,\r\n    \"mail\" :\"Sara@mail\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -181,6 +191,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"affiliates"
 							]
 						}
@@ -200,6 +212,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"affiliates",
 								"1"
 							]
@@ -229,6 +243,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"affiliates"
 							]
 						}
@@ -236,20 +252,22 @@
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "Deletebyid",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/controller/affiliates/21",
+							"raw": "http://localhost:8080/api/controller/affiliates/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"affiliates",
-								"21"
+								"5"
 							]
 						}
 					},
@@ -273,6 +291,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"appoinments"
 							]
 						}
@@ -286,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \r\n    \"date\" : \"23/12/2022\",\r\n    \"hour\" : \"09:30\",\r\n    \"idTest\": 6,\r\n    \"idAffiliate\": 2\r\n}",
+							"raw": "{ \r\n    \"date\" : \"24/12/2022\",\r\n    \"hour\" : \"11:20\",\r\n    \"idTest\": 23,\r\n    \"idAffiliate\": 21\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -301,6 +321,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"appoinments"
 							]
 						}
@@ -313,15 +335,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/controller/appoinments/8",
+							"raw": "http://localhost:8080/api/controller/appoinments/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"appoinments",
-								"8"
+								"4"
 							]
 						}
 					},
@@ -334,7 +358,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 4,\r\n    \"date\" : \"10/12/2022\",\r\n    \"hour\" : \"07:50\",\r\n    \"idTest\": 6,\r\n    \"idAffiliate\": 200\r\n}",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"date\" : \"10/12/2022\",\r\n    \"hour\" : \"07:50\",\r\n    \"idTest\": 6,\r\n    \"idAffiliate\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -349,6 +373,8 @@
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"appoinments"
 							]
 						}
@@ -356,20 +382,68 @@
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "Deletebyid",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/controller/appoinments/1",
+							"raw": "http://localhost:8080/api/controller/appoinments/41",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
+								"api",
+								"controller",
 								"appoinments",
-								"1"
+								"41"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetbyAffliate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/controller/appoinments/GetByAfilliate/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"controller",
+								"appoinments",
+								"GetByAfilliate",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetbyDate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/controller/appoinments/GetByDate/2022-12-24",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"controller",
+								"appoinments",
+								"GetByDate",
+								"2022-12-24"
 							]
 						}
 					},
